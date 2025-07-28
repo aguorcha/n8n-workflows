@@ -1,0 +1,1115 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -880,
+        416
+      ],
+      "id": "331aabdd-ec73-44bb-9836-ccdaf8f786f4",
+      "name": "Leads saneados - escribir datos",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        544
+      ],
+      "id": "67162308-e245-4cf9-af77-efffe4e6ecdc",
+      "name": "Loop Over Items3",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        432,
+        880
+      ],
+      "id": "973cad91-46df-41b9-9482-5a9e62551158",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PNbsOzj2y8lh0b2z",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"email_scraped\": \"\",\n  \"description_scraped\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        624,
+        880
+      ],
+      "id": "065e8f9e-afec-4106-864e-8ec0fcf85422",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        720,
+        -32
+      ],
+      "id": "36b44a4b-194a-48ca-ba20-e2b48a843816",
+      "name": "leads saneados y enriquecidos1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2736,
+        416
+      ],
+      "id": "04c50b46-6465-4935-bd68-ef818ee944d8",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        640,
+        224
+      ],
+      "id": "4c9191c6-21df-4a56-9fca-422e968374e5",
+      "name": "leads sin email",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        528,
+        -32
+      ],
+      "id": "cde2843b-7144-4463-a7db-1d2ea16ebc0f",
+      "name": "Limpiar hoja principal",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        416,
+        224
+      ],
+      "id": "a97717a9-3d1b-443a-8756-38ff41bdb645",
+      "name": "Limpiar hoja sin_emails",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analiza el siguiente contenido de la web de esta empresa:\n\n{{ $json.data }}\n\nTu tarea es extraer 2 piezas de información y devolverlas en formato JSON:\n\n1. El email de contacto.\n2. Una descripción concisa y profesional de la empresa en español, de unas 30-40 palabras, ideal para personalizar un email. Resume sus especialidades y a quién se dirigen. Si no puedes generar una descripción, deja el campo vacío.\n\nResponde únicamente con el JSON.",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        416,
+        656
+      ],
+      "id": "0cc2d83c-dc5b-4846-9864-8d0f35c12a69",
+      "name": "Buscar email y redactar descripción",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## Limpieza y curación de datos",
+        "height": 368,
+        "width": 2384,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2832,
+        304
+      ],
+      "typeVersion": 1,
+      "id": "83e3309e-b5c0-4671-9feb-f5f025b519e4",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Scraping para enriquecimiento",
+        "height": 576,
+        "width": 1312,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "7c1c969b-4898-4aa2-8ced-9d6966c70f43",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Fusión y clasificación de datos para escritura final",
+        "height": 544,
+        "width": 1328,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -352,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "5f744110-55d1-4ad4-81d6-1fb845698bfc",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -2496,
+        416
+      ],
+      "id": "9adda7fb-f23c-4f4f-b297-86d5b6f47c83",
+      "name": "Leads en bruto",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e9xE75PHVIkLYRHN",
+          "name": "Sheets hello bamgrow"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "11f9112e-61f8-42a6-a47a-6da096f0d4c9",
+              "name": "first_name",
+              "value": "={{ $json.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "b5f5fe07-3233-4e27-80c6-faeaf70789ea",
+              "name": "last_name",
+              "value": "={{ $json.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "0e36475e-d0bc-46b0-ae1f-61359fa0ab39",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "a62651f7-81ce-4fb6-89fb-636c217950c1",
+              "name": "email_generico",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "cd2d1298-e484-479f-ae70-7344c3f31672",
+              "name": "organization_name",
+              "value": "={{ $json.organization_name }}",
+              "type": "string"
+            },
+            {
+              "id": "41e371ea-c507-4ff9-9718-f71745bc4dec",
+              "name": "organization_website_url",
+              "value": "={{ $json.organization_website_url }}",
+              "type": "string"
+            },
+            {
+              "id": "700c48f6-11ca-4371-bb03-046fe7428405",
+              "name": "linkedin_url",
+              "value": "={{ $json.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "f18f4651-c879-4a85-b29c-363a695297d4",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "f9a216fa-f179-4e2c-872f-ef977d36d245",
+              "name": "seniority",
+              "value": "={{ $json.seniority }}",
+              "type": "string"
+            },
+            {
+              "id": "ffc2d309-8762-4a67-aaf5-d39b91a51cc8",
+              "name": "estimated_num_employees",
+              "value": "={{ $json.estimated_num_employees }}",
+              "type": "string"
+            },
+            {
+              "id": "72784ea7-f258-498b-84fc-8bc75837b939",
+              "name": "city",
+              "value": "={{ $json.city }}",
+              "type": "string"
+            },
+            {
+              "id": "2d990837-49d3-4cfe-8277-5772ed2d6d24",
+              "name": "state",
+              "value": "={{ $json.state }}",
+              "type": "string"
+            },
+            {
+              "id": "add9ad91-b1b6-4162-89a3-9cff679e8751",
+              "name": "country",
+              "value": "={{ $json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "2fdfb2f6-8f75-424e-92e7-17b28f0fb5cc",
+              "name": "organization_short_description",
+              "value": "={{ $json.organization_short_description }}",
+              "type": "string"
+            },
+            {
+              "id": "09da4e56-1de0-4c23-95db-e0947305620b",
+              "name": "organization_technologies",
+              "value": "={{ $json.organization_technologies }}",
+              "type": "string"
+            },
+            {
+              "id": "250a99c5-6583-4036-9cac-5e7f28f1c97e",
+              "name": "organization_linkedin_url",
+              "value": "={{ $json.organization_linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "3eb732dc-dd88-4050-94e8-77bb3135bb2e",
+              "name": "organization_phone",
+              "value": "={{ $json.organization_phone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2272,
+        416
+      ],
+      "id": "e2230480-2c50-4ae7-a42c-3be93ac69727",
+      "name": "Cribar datos"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "first_name, last_name, organization_name",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -2032,
+        416
+      ],
+      "id": "138ff703-da42-42a1-8b40-6535e1b89f66",
+      "name": "Borrar contactos duplicados"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const title = $json.title ? $json.title.toLowerCase() : '';\nconst seniority = $json.seniority ? $json.seniority.toLowerCase() : '';\nlet decisionScore = 1;\n\nif (seniority.includes('owner') || seniority.includes('founder') || seniority.includes('c-level') || title.includes('ceo') || title.includes('propietario')) {\n  decisionScore = 10;\n} else if (seniority.includes('director') || title.includes('director')) {\n  decisionScore = 8;\n} else if (seniority.includes('manager') || title.includes('gerente')) {\n  decisionScore = 6;\n}\n\n$json.decisionScore = decisionScore;\n\nreturn $json;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1792,
+        416
+      ],
+      "id": "d126a542-2561-4bb7-b2f6-4320243931fc",
+      "name": "Decision Makers"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "06cbd124-1549-4a86-9d24-014eae2c1ce0",
+              "leftValue": "={{ $json.decisionScore }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1552,
+        416
+      ],
+      "id": "e8da7355-340a-4c48-8de6-61c4da7bf118",
+      "name": "Filtrar solo los Decision Makers"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "organization_name"
+            },
+            {
+              "fieldName": "decisionScore",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -1328,
+        416
+      ],
+      "id": "64a00284-fec8-401f-aa12-f49e8c7431bb",
+      "name": "Ordenar por empresa"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "organization_name",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        416
+      ],
+      "id": "543ff652-499a-4627-82cd-2efed3f91236",
+      "name": "Borrar contactos misma empresa"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1d0acf04-6325-4ec5-a71f-422642ebcb47",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "06a1469e-ba35-492c-87dd-4f2982295797",
+              "leftValue": "={{ $json.organization_short_description }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -656,
+        416
+      ],
+      "id": "ce0863ff-6e94-4540-94e1-e96dd683ae0f",
+      "name": "Tiene email?"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.organization_website_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -16,
+        656
+      ],
+      "id": "718e70c5-22ec-4f64-b3ed-206aa909beed",
+      "name": "Scraping web",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "=data",
+              "cssSelector": "*"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        656
+      ],
+      "id": "ae799e78-6f8c-491f-829e-5839b87592ab",
+      "name": "Extrae contenido web",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -144,
+        96
+      ],
+      "id": "525b8db7-e1a5-4b74-a170-bf9dde33b892",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        320,
+        -32
+      ],
+      "id": "a46ac64b-aa09-4445-9f3d-484059ceafc9",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.email ? 'DIRECTO' : ($json.email_generico ? 'GENERICO' : 'NINGUNO') }}",
+                    "rightValue": "DIRECTO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "a3693e38-f923-4551-aaf4-7097ee2f1f95"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DIRECTO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb8c357c-586e-4d2a-803f-2c302504f227",
+                    "leftValue": "={{ $json.email ? 'DIRECTO' : ($json.email_generico ? 'GENERICO' : 'NINGUNO') }}",
+                    "rightValue": "GENERICO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GENERICO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c7a6f94d-d33f-4d73-9550-36f943802f30",
+                    "leftValue": "={{ $json.email ? 'DIRECTO' : ($json.email_generico ? 'GENERICO' : 'NINGUNO') }}",
+                    "rightValue": "NINGUNO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NINGUNO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        80
+      ],
+      "id": "8b78ea9b-41d9-433a-897e-cf55bb556928",
+      "name": "Tipo de email"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9756a42-7b45-49eb-a037-82e897469be7",
+              "name": "first_name",
+              "value": "={{ $('Cribar datos').item.json.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "b4fa9f2a-9063-4c08-9c11-2efe3e81cbd4",
+              "name": "last_name",
+              "value": "={{ $('Cribar datos').item.json.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "c73e4a5b-0e5c-4e05-b10b-298cb5d8ffc3",
+              "name": "email_generico",
+              "value": "={{ $json.output.email_scraped }}",
+              "type": "string"
+            },
+            {
+              "id": "071b7abc-ed5a-496e-aa8c-f2c10e09faaf",
+              "name": "organization_name",
+              "value": "={{ $('Cribar datos').item.json.organization_name }}",
+              "type": "string"
+            },
+            {
+              "id": "06aa78f3-f7bc-4107-863b-8f1acf562cd8",
+              "name": "organization_website_url",
+              "value": "={{ $('Cribar datos').item.json.organization_website_url }}",
+              "type": "string"
+            },
+            {
+              "id": "10a25619-177f-4450-b905-0f8ffbb7ee25",
+              "name": "linkedin_url",
+              "value": "={{ $('Cribar datos').item.json.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "68d98c55-e05d-400d-ab63-112ac696355d",
+              "name": "title",
+              "value": "={{ $('Cribar datos').item.json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "74e50c99-690a-4a50-98ec-2fadcd0dd409",
+              "name": "seniority",
+              "value": "={{ $('Cribar datos').item.json.seniority }}",
+              "type": "string"
+            },
+            {
+              "id": "9da4712a-d8c6-4f05-9675-76eb4c6f12eb",
+              "name": "estimated_num_employees",
+              "value": "={{ $('Cribar datos').item.json.estimated_num_employees }}",
+              "type": "string"
+            },
+            {
+              "id": "dd044c33-3593-4a62-898e-dbac9b94e9f4",
+              "name": "city",
+              "value": "={{ $('Cribar datos').item.json.city }}",
+              "type": "string"
+            },
+            {
+              "id": "bd046cb0-75d9-4158-996a-2253f304d444",
+              "name": "state",
+              "value": "={{ $('Cribar datos').item.json.state }}",
+              "type": "string"
+            },
+            {
+              "id": "c58857b0-920f-470d-8401-431346d01370",
+              "name": "country",
+              "value": "={{ $('Cribar datos').item.json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "aa6ce47b-3ea4-49b3-ab2f-bbd6acfbc7d4",
+              "name": "organization_short_description",
+              "value": "={{ $('Loop Over Items3').item.json.organization_short_description || $json.output.description_scraped }}",
+              "type": "string"
+            },
+            {
+              "id": "bd0c9670-20e8-4d43-a855-277313a7c54f",
+              "name": "organization_technologies",
+              "value": "={{ $('Cribar datos').item.json.organization_technologies }}",
+              "type": "string"
+            },
+            {
+              "id": "623995c2-8c01-4054-9e16-a924e7f36486",
+              "name": "organization_linkedin_url",
+              "value": "={{ $('Cribar datos').item.json.organization_linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "1ad26178-3cae-4bbc-8881-195db6681e61",
+              "name": "organization_phone",
+              "value": "={{ $('Cribar datos').item.json.organization_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "5d8bbcca-4ab1-4d43-bbd5-a87c064a3336",
+              "name": "decisionScore",
+              "value": "={{ $('Decision Makers').item.json.decisionScore }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        656
+      ],
+      "id": "51424540-4451-460b-a567-b0d5ac1d83cf",
+      "name": "Añadir email y descripción"
+    }
+  ],
+  "connections": {
+    "Leads saneados - escribir datos": {
+      "main": [
+        [
+          {
+            "node": "Tiene email?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Scraping web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Buscar email y redactar descripción",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Buscar email y redactar descripción",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Leads en bruto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiar hoja principal": {
+      "main": [
+        [
+          {
+            "node": "leads saneados y enriquecidos1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiar hoja sin_emails": {
+      "main": [
+        [
+          {
+            "node": "leads sin email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar email y redactar descripción": {
+      "main": [
+        [
+          {
+            "node": "Añadir email y descripción",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leads en bruto": {
+      "main": [
+        [
+          {
+            "node": "Cribar datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cribar datos": {
+      "main": [
+        [
+          {
+            "node": "Borrar contactos duplicados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Borrar contactos duplicados": {
+      "main": [
+        [
+          {
+            "node": "Decision Makers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decision Makers": {
+      "main": [
+        [
+          {
+            "node": "Filtrar solo los Decision Makers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar solo los Decision Makers": {
+      "main": [
+        [
+          {
+            "node": "Ordenar por empresa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ordenar por empresa": {
+      "main": [
+        [
+          {
+            "node": "Borrar contactos misma empresa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Borrar contactos misma empresa": {
+      "main": [
+        [
+          {
+            "node": "Leads saneados - escribir datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tiene email?": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scraping web": {
+      "main": [
+        [
+          {
+            "node": "Extrae contenido web",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrae contenido web": {
+      "main": [
+        [
+          {
+            "node": "Buscar email y redactar descripción",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Tipo de email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Limpiar hoja principal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de email": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Limpiar hoja sin_emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Añadir email y descripción": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "a800cfd0d4b417777624c84bfb0dd95e70307b6f8585d3eee897af4b381ad4d3"
+  }
+}
